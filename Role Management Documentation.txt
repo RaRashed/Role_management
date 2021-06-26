@@ -1,0 +1,37 @@
+1.Laravel 7.x Project Setup
+2. Database Setup
+3.""Php artisan make:auth does not work in laravel 7.x""
+authentication for laravel 7.x
+
+a) composer require laravel/ui:^2.4
+
+b) php artisan ui vue --auth
+
+4. for frontend we have to install npm.
+   (npm install) and then (npm run dev)
+
+5. Laravel permission Package Install
+   composer require spatie/laravel-permission
+
+6. Optional: The service provider will automatically get registered. Or you may manually add the service provider in your config/app.php file:
+
+'providers' => [
+    // ...
+    Spatie\Permission\PermissionServiceProvider::class,
+];
+7.
+
+You should publish the migration and the config/permission.php config file with:
+
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+
+8.  we have to cache clear.
+    php artisan optimize:clear
+ # or
+ php artisan config:clear
+9.php artisan migrate
+10. Roles Seeder Create
+11. Permissions Seeder create
+
+
+

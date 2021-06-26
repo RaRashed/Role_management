@@ -23,7 +23,8 @@ Roles Create Page ~ Admin Panel
                             <h4 class="page-title pull-left">Roles Create</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                                <li><span>All Roles</span></li>
+                                <li><a href="{{route('admin.roles.index')}}">All Roles</a></li>
+                                <li><span>Edit Roles</span></li>
                             </ul>
                         </div>
                     </div>
@@ -39,15 +40,15 @@ Roles Create Page ~ Admin Panel
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Create New Role</h4>
+                                <h4 class="header-title">Edit Role</h4>
                                 @include('backend.layouts.partials.messages')
 
-                                <form action="{{route('admin.roles.store')}}" method="POST">
+                                <form action="{{route('admin.roles.update',$role->id)}}" method="POST">
                                     @csrf
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Role Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Role Name" >
+                                        <input type="text" class="form-control" id="name" value="{{$role->name}}" name="name" placeholder="Enter Role Name" >
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Permissions</label>
@@ -79,7 +80,7 @@ Roles Create Page ~ Admin Panel
                                             @endphp
                                           @foreach ($permissions as $permission )
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="permissions[]" id="checkPermission{{$permission->id}}" value="{{$permission->name}}">
+                                        <input type="checkbox" class="form-check-input" name="permissions[]" checked=true id="checkPermission{{$permission->id}}" value="{{$permission->name}}">
                                         <label class="form-check-label" for="checkPermission{{$permission->id}}">{{$permission->name}}</label>
                                     </div>
                                     @php
@@ -117,7 +118,13 @@ Roles Create Page ~ Admin Panel
 
 @section('scripts')
 
-@include('backend.pages.roles.partials.scripts')
+
+
+    @include('backend.pages.roles.partials.scripts')
+
+
+
+
 
 
 
